@@ -1,27 +1,16 @@
 import numpy as np
 
-
 def random_predict(number:int=1) -> int:
 
     """Рандомно угадываем число
 
-    1
-    2
-    3
-    4
-    5
-    6
     Args:
         number (int, optional): Загаданное число. Defaults to 1.
 
     Returns:
         int: Число попыток
     """
-
-
     count = 0
-
-
     while True:
         count += 1
         predict_number = np.random.randint(1, 101) # предполагаемое число
