@@ -54,19 +54,27 @@ def game_core_v3(number: int = 1) -> int:
     Returns:
         int: Число попыток
     """
+    # Инициализируем счетчик попыток угадывания начальное значение
     count = 0
-    predict = np.random.randint(1, 101)
-
-    while number != predict:
+    # Инициализируем начало и конец искомого диапазона
+    first = 1
+    last = 100
+    # Создаем цикл, проверяем пока искомый диапазон
+    while first <= last:
+        # Инкрементируем счетчик
         count += 1
-        if number > predict:
-            predict = np.random.randint(predict + 1, number + 1)
-        elif number < predict:
-            predict = np.random.randint(number, predict)
-
-    # Ваш код заканчивается здесь
-
-    return count
+        # Присвоим предсказательному числу среднее значение от искомого диапазона
+        predict = first + (last - first) // 2
+        # Если предсказательное число и загаданное равны, тогда возвращаем значение счетчка попыток
+        if predict == number:
+            return count
+        # Если предсказательное число меньше загаданного — продолжаем поиск в правой части массива, иначе в левой
+        elif predict < number:
+            first = predict + 1
+        else:
+            last = predict - 1
+    # Возвращаем отрицательный результат если загаданное число оказалось вне диапазона от 1 до 100
+    return -1
 
 
 def score_game(random_predict) -> int:
